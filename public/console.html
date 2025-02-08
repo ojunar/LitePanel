@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Console</title>
+  <link rel="stylesheet" href="/themes/<%= theme %>.css">
+</head>
+<body>
+  <h1>Console - <%= server.name %></h1>
+  <div id="console"></div>
+  <input type="text" id="command" placeholder="Enter command...">
+  <script>
+    const ws = new WebSocket('ws://localhost:3000/servers/<%= server.id %>/console');
+    const consoleDiv = document.getElementById('console');
+    const commandInput = document.getElementById('command');
+
+    ws.onmessage = (event) => {
+      consoleDiv.innerHTML += `<div>${event.data}</div>`;
+      consoleDiv.scrollTop = consoleDiv.scrollHeight;
+    };
+
+    commandInput.addEventListener('keypress', (event) => {
+      if (event.key === 'Enter') {
+        const command = commandInput.value;
+        ws.send(command);
+        commandInput.value = '';
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+themes:
+  - default
+  - dark
+  - light
+password: admin
+backup:
+  enabled: true
+  interval: daily
+  retain: 7

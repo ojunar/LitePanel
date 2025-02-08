@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LitePanel</title>
+  <link rel="stylesheet" href="/themes/<%= theme %>.css">
+</head>
+<body>
+  <h1>Servers</h1>
+  <ul>
+    <% servers.forEach(server => { %>
+    <li>
+      <a href="/servers/<%= server.id %>/files"><%= server.name %></a>
+    </li>
+    <% }); %>
+  </ul>
+</body>
+</html>
